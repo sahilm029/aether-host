@@ -1,0 +1,36 @@
+[package]
+name = "aether"
+version = "0.1.0"
+edition = "2021"
+default-run = "aether"
+
+[dependencies]
+# The Runtime
+# We use "full" to get fs, net, io, and process management features.
+tokio = { version = "1", features = ["full"] }
+
+# Serialization (The Glue)
+# MCP is JSON-based. Serde is the industry standard for turning structs into JSON.
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Error Handling
+# 'anyhow' provides flexible error handling without boilerplate. 
+# Essential for early dev.
+anyhow = "1"
+
+# Logging
+# NEVER use println! for debug logs in a system that will eventually have a TUI.
+# println! goes to stdout, which the TUI will own. 
+# We use tracing to send logs to stderr or a file.
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+
+reqwest = { version = "0.11", features = ["json"] } # HTTP Client
+dotenv = "0.15" # Loads .env file
+async-recursion = "1.0" # Needed because the Agent Loop calls itself
+
+# --- PHASE 5: THE FACE ---
+ratatui = "0.26"
+crossterm = "0.27"
