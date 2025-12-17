@@ -4,3 +4,4 @@ pub mod security;
 pub mod client;
 pub mod llm;
 pub mod tui;
+pub mod agent;
